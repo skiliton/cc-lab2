@@ -43,7 +43,7 @@ class ImplDutyScheduleRepository : DutyScheduleRepository {
         description: String?,
         schedule: Map<DayOfWeek, Pair<OffsetTime, OffsetTime>>?
     ): DutySchedule? {
-        return storage.computeIfPresent(id) { uuid, dutySchedule ->
+        return storage.computeIfPresent(id) { _, dutySchedule ->
             name?.let { dutySchedule.name = it }
             surname?.let { dutySchedule.surname = it }
             description?.let { dutySchedule.description = it }

@@ -1,7 +1,7 @@
 package ua.repeta.cclab2.dto
 
 import java.time.DayOfWeek
-import java.time.Instant
+import java.time.OffsetTime
 import java.util.*
 
 class DutyScheduleReadDto(
@@ -9,5 +9,5 @@ class DutyScheduleReadDto(
     val name: String,
     val surname: String,
     val description: String,
-    val schedule: Map<DayOfWeek, Pair<Instant, Instant>>
+    val schedule: Map<DayOfWeek, Pair<OffsetTime, OffsetTime>>
 )

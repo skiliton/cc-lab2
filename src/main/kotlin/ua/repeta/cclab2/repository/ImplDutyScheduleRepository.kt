@@ -1,15 +1,28 @@
 package ua.repeta.cclab2.repository
 
 import org.springframework.stereotype.Repository
+import ua.repeta.cclab2.extension.timeOfTheDay
 import ua.repeta.cclab2.model.DutySchedule
 import java.time.DayOfWeek
-import java.time.Instant
+import java.time.OffsetTime
 import java.util.*
 
 @Repository
 class ImplDutyScheduleRepository : DutyScheduleRepository {
 
-    private val storage = Collections.synchronizedMap(mutableMapOf<UUID, DutySchedule>())
+    private val storage = Collections.synchronizedMap(
+        mutableMapOf<UUID, DutySchedule>(
+            DutySchedule(
+                name = "Ivasik",
+                surname = "Telesyk",
+                description = "Gardening",
+                schedule = mapOf(
+                    DayOfWeek.MONDAY to (timeOfTheDay(11, 30) to timeOfTheDay(13, 0)),
+                    DayOfWeek.FRIDAY to (timeOfTheDay(11, 30) to timeOfTheDay(13, 0))
+                )
+            ).let { it.id to it }
+        )
+    )
 
     override fun create(dutySchedule: DutySchedule): DutySchedule {
         return storage.putIfAbsent(dutySchedule.id, dutySchedule) ?: dutySchedule
@@ -28,7 +41,7 @@ class ImplDutyScheduleRepository : DutyScheduleRepository {
         name: String?,
         surname: String?,
         description: String?,
-        schedule: Map<DayOfWeek, Pair<Instant, Instant>>?
+        schedule: Map<DayOfWeek, Pair<OffsetTime, OffsetTime>>?
     ): DutySchedule? {
         return storage.computeIfPresent(id) { uuid, dutySchedule ->
             name?.let { dutySchedule.name = it }

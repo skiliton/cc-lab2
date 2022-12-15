@@ -1,7 +1,7 @@
 package ua.repeta.cclab2.model
 
 import java.time.DayOfWeek
-import java.time.Instant
+import java.time.OffsetTime
 import java.util.*
 
 data class DutySchedule(
@@ -9,5 +9,5 @@ data class DutySchedule(
     var name: String?,
     var surname: String?,
     var description: String?,
-    var schedule: Map<DayOfWeek, Pair<Instant, Instant>>?
+    var schedule: Map<DayOfWeek, Pair<OffsetTime, OffsetTime>>?
 )

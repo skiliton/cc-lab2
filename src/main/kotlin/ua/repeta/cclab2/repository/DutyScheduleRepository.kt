@@ -2,7 +2,7 @@ package ua.repeta.cclab2.repository
 
 import ua.repeta.cclab2.model.DutySchedule
 import java.time.DayOfWeek
-import java.time.Instant
+import java.time.OffsetTime
 import java.util.*
 
 interface DutyScheduleRepository {
@@ -14,6 +14,6 @@ interface DutyScheduleRepository {
         name: String? = null,
         surname: String? = null,
         description: String? = null,
-        schedule: Map<DayOfWeek, Pair<Instant, Instant>>? = null
+        schedule: Map<DayOfWeek, Pair<OffsetTime, OffsetTime>>? = null
     ): DutySchedule?
 }
